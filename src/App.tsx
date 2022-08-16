@@ -1,58 +1,55 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import { Villager } from './common/types';
+
+import { useAppSelector, useAppDispatch } from './app/hooks';
+import {
+    add,
+    remove,
+    selectCount,
+    getList
+} from './store/villagers';
+
+import villagersJSON from './data/villagers.json';
+
+
+const villagers: Villager[] = JSON.parse(JSON.stringify(villagersJSON));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    const count = useAppSelector(selectCount);
+    const list = useAppSelector(getList);
+    const dispatch = useAppDispatch();
+    return (
+        <div className="App">
+        <ul>
+            {
+                Object.keys(list).map((k, i) => {
+                    let villager = list[k];
+                    return <li key={i}>
+                        {villager.name}
+                        <button
+                            onClick={() => dispatch(remove(villager.id))}
+                        >x</button>
+                    </li>
+                })
+            }
+        </ul>
+            <hr/>
+                <ul>
+                    {
+                        villagers.map((villager, i) => {
+                            return <li key={i}>
+                                {villager.name}
+                                <button
+                                    onClick={() => dispatch(add(villager))}
+                                    disabled={count > 10}
+                                >add</button>
+                            </li>
+                        })
+                    }
+                </ul>
+        </div>
+    );
 }
 
 export default App;
