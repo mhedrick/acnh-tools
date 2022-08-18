@@ -22,7 +22,6 @@ export const villagersSlice = createSlice({
             let villager = payload;
             state.list[villager.id] = villager;
             console.log(`The list has ${Object.keys(state.list).length} entries.`);
-            // this logic is shaky
             if(Object.keys(state.list).length >= 10) {
                 state.full = true;
             }
@@ -32,7 +31,7 @@ export const villagersSlice = createSlice({
             delete state.list[id];
             state.full = false;
         }
-    },
+    }
 });
 
 export const { add, remove } = villagersSlice.actions;

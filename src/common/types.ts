@@ -1,94 +1,84 @@
-export enum Species {
-    Alligator,
-    Anteater,
-    Bear,
-    Bird,
-    Bull,
-    Cat,
-    Cub,
-    Chicken,
-    Cow,
-    Deer,
-    Dog,
-    Duck,
-    Eagle,
-    Elephant,
-    Frog,
-    Goat,
-    Gorilla,
-    Hamster,
-    Hippo,
-    Horse,
-    Koala,
-    Kangaroo,
-    Lion,
-    Monkey,
-    Mouse,
-    Octopus,
-    Ostrich,
-    Penguin,
-    Pig,
-    Rabbit,
-    Rhino,
-    Sheep,
-    Squirrel,
-    Tiger,
-    Wolf
-}
+export type Species =
+    "Alligator"|
+    "Anteater"|
+    "Bear"|
+    "Bird"|
+    "Bull"|
+    "Cat"|
+    "Cub"|
+    "Chicken"|
+    "Cow"|
+    "Deer"|
+    "Dog"|
+    "Duck"|
+    "Eagle"|
+    "Elephant"|
+    "Frog"|
+    "Goat"|
+    "Gorilla"|
+    "Hamster"|
+    "Hippo"|
+    "Horse"|
+    "Koala"|
+    "Kangaroo"|
+    "Lion"|
+    "Monkey"|
+    "Mouse"|
+    "Octopus"|
+    "Ostrich"|
+    "Penguin"|
+    "Pig"|
+    "Rabbit"|
+    "Rhino"|
+    "Sheep"|
+    "Squirrel"|
+    "Tiger"|
+    "Wolf";
 
-export enum Personality {
-    Cranky,
-    Jock,
-    Lazy,
-    Normal,
-    Peppy,
-    Sisterly,
-    Smug,
-    Snooty
-}
 
-export enum Gender {
-    Male,
-    Female
-}
+export type Personality =
+    "Cranky"|
+    "Jock"|
+    "Lazy"|
+    "Normal"|
+    "Peppy"|
+    "Sisterly"|
+    "Smug"|
+    "Snooty";
 
-export enum Sign {
-    Aries,
-    Taurus,
-    Gemini,
-    Cancer,
-    Leo,
-    Virgo,
-    Libra,
-    Scorpio,
-    Sagittarius,
-    Capricorn,
-    Aquarius,
-    Pisces
-}
+
+export type Gender = "Male" | "Female";
+
+
+export type Sign = "Aries"|
+    "Taurus"|
+    "Gemini"|
+    "Cancer"|
+    "Leo"|
+    "Virgo"|
+    "Libra"|
+    "Scorpio"|
+    "Sagittarius"|
+    "Capricorn"|
+    "Aquarius"|
+    "Pisces";
 
 export type SubPersonality = "A" | "B";
 
-export enum Hobby {
-    Education, 
-    Fashion, 
-    Fitness, 
-    Music, 
-    Nature, 
-    Play
-}
+export type Hobby = "Education" | "Fashion" | "Fitness" | "Music" | "Nature" | "Play";
+
 
 export enum Media {
-    DNM, 
-    AC, 
-    E_PLUS, 
-    WW, 
-    CF, 
-    NL, 
-    WA, 
-    NH, 
-    FILM, 
-    HHD, 
+    DNM,
+    AC,
+    E_PLUS,
+    WW,
+    CF,
+    NL,
+    WA,
+    NH,
+    FILM,
+    HHD,
     PC
 }
 
@@ -99,7 +89,7 @@ interface Details {
     clothing_variation: string;
     fav_styles: Array<string>[];
     fav_colors: Array<string>[];
-    hobby: string;
+    hobby: Hobby;
 }
 
 export interface VillagerObj {
@@ -109,12 +99,12 @@ export interface VillagerObj {
     text_color: string;
     id: string;
     image_url: string;
-    species: string;
-    personality: string;
-    gender: string;
+    species: Species;
+    personality: Personality;
+    gender: Gender;
     birthday_month: string;
     birthday_day: string;
-    sign: string;
+    sign: Sign;
     quote: string;
     phrase: string;
     clothing: string;
@@ -150,7 +140,7 @@ export class Villager {
     fav_colors;
     hobby;
 
-    constructor(obj: VillagerObj){
+    constructor(obj: VillagerObj) {
         this.name = obj.name;
         this.species = obj.species;
         this.url = obj.url;
@@ -169,7 +159,7 @@ export class Villager {
         this.clothing = obj.clothing;
         this.debut = obj.debut;
 
-        this.photo_url =  obj.nh_details.photo_url;
+        this.photo_url = obj.nh_details.photo_url;
         this.icon_url = obj.nh_details.icon_url;
         this.subPersonality = obj.nh_details["sub-personality"];
         this.clothing_variation = obj.nh_details.clothing_variation;

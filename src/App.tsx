@@ -42,7 +42,7 @@ function App() {
                                 {villager.name}
                                 <button
                                     onClick={() => dispatch(add(villager))}
-                                    disabled={count > 10}
+                                    disabled={count >= 10 || list[villager.id] != null}
                                 >add</button>
                             </li>
                         })
