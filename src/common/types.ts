@@ -65,7 +65,14 @@ export type Sign = "Aries"|
 
 export type SubPersonality = "A" | "B";
 
-export type Hobby = "Education" | "Fashion" | "Fitness" | "Music" | "Nature" | "Play";
+export enum Hobby {
+     Education, 
+     Fashion, 
+     Fitness, 
+     Music, 
+     Nature, 
+     Play
+}
 
 
 export enum Media {
@@ -89,7 +96,7 @@ interface Details {
     clothing_variation: string;
     fav_styles: Array<string>[];
     fav_colors: Array<string>[];
-    hobby: Hobby;
+    hobby: keyof typeof Hobby;
 }
 
 export interface VillagerObj {
@@ -124,21 +131,21 @@ export class Villager {
     image_url;
     species;
     personality;
-    gender;
+    gender: Gender;
     birthday_month;
     birthday_day;
-    sign;
+    sign: Sign;
     quote;
     phrase;
     clothing;
     debut;
     photo_url;
     icon_url;
-    subPersonality;
+    subPersonality: SubPersonality;
     clothing_variation;
     fav_styles;
     fav_colors;
-    hobby;
+    hobby: keyof typeof Hobby;
 
     constructor(obj: VillagerObj) {
         this.name = obj.name;
